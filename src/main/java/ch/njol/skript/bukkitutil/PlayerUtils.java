@@ -73,33 +73,7 @@ public abstract class PlayerUtils {
 	
 	@SuppressWarnings({"null", "unchecked"})
 	public final static Collection<? extends Player> getOnlinePlayers() {
-		if (hasCollecionGetOnlinePlayers) {
-			return Bukkit.getOnlinePlayers();
-		} else {
-			if (getOnlinePlayers == null) {
-				try {
-					getOnlinePlayers = Bukkit.class.getDeclaredMethod("getOnlinePlayers");
-				} catch (final NoSuchMethodException e) {
-					Skript.outdatedError(e);
-				} catch (final SecurityException e) {
-					Skript.exception(e);
-				}
-			}
-			try {
-				final Object o = getOnlinePlayers.invoke(null);
-				if (o instanceof Collection<?>)
-					return (Collection<? extends Player>) o;
-				else
-					return Arrays.asList((Player[]) o);
-			} catch (final IllegalAccessException e) {
-				Skript.outdatedError(e);
-			} catch (final IllegalArgumentException e) {
-				Skript.outdatedError(e);
-			} catch (final InvocationTargetException e) {
-				Skript.exception(e);
-			}
-			return Collections.emptyList();
-		}
+		return Bukkit.getOnlinePlayers();
 	}
 	
 }
